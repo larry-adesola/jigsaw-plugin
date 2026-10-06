@@ -5,6 +5,7 @@
   "description": "Publish a small app your agent built, then choose who can open it, like sharing a doc. Jigsaw hosts it, signs each person in, and handles roles, data and secret keys.",
   "author": { "name": "Jigsaw", "email": "team@jigsawapps.com", "url": "https://jigsawapps.com" },
   "homepage": "https://jigsawapps.com/agents",
+  "privacyPolicyUrl": "https://jigsawapps.com/privacy",
   "license": "MIT",
   "keywords": ["publish", "hosting", "deploy", "sharing", "apps"]
 }
