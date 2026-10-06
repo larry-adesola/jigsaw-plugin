@@ -1,0 +1,5 @@
+{
+  "mcpServers": {
+    "jigsaw": { "type": "http", "url": "https://jigsawapps.com/mcp" }
+  }
+}
