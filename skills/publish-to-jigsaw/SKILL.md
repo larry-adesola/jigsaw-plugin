@@ -10,7 +10,7 @@ Every Jigsaw app is private: only the owner and the people they add by email can
 Read this before writing the app, not after: an app built to these rules works on Jigsaw the first time.
 
 Jigsaw hosts small apps and shares them by email, like a doc. To publish:
-- If you can run shell commands, call get_upload_link and run the command it gives you. It uploads the app's folder from disk, so you do not retype the files. Always prefer this.
+- If you can run shell commands, call get_upload_link. It gives an upload address and a ticket. Zip the app's folder, leaving out node_modules and .git, and POST it to that address with the ticket as a Bearer token, writing the command for the machine you are on. The files go from disk, so you do not retype them. Always prefer this.
 - If you cannot run commands, use publish_app and pass every file.
 
 Build for the LIGHT LANE unless the app truly needs its own server:

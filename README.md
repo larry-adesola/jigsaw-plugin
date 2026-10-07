@@ -8,7 +8,7 @@ Jigsaw is a cloud for small software. Claude builds a small web app, you say "pu
 
 - **The Jigsaw connector**, a remote MCP server at `https://jigsawapps.com/mcp`, with three tools:
   - **Publish an app**: publishes or updates an app from the files Claude passes.
-  - **Get an upload command**: for when Claude can run shell commands. It returns a command that uploads the app's folder from disk.
+  - **Get an upload link**: for when Claude can run shell commands. It returns an upload address and a ticket that works for 10 minutes, for one app.
   - **List apps**: lists the apps you own or have been given access to.
 - **A skill, `publish-to-jigsaw`**, which tells Claude how to build an app that works on Jigsaw the first time: how visitors are signed in, how to store shared data, and how to call an outside API without putting a secret key in the page.
 
@@ -24,7 +24,7 @@ Jigsaw is a cloud for small software. Claude builds a small web app, you say "pu
 ## What it sends, and where
 
 - The plugin talks to `https://jigsawapps.com` and nothing else.
-- When you ask Claude to publish, the app's files are sent to Jigsaw. With the upload command, Claude runs `zip` and `curl` in the app's folder: it zips the folder, leaving out `node_modules` and `.git`, and posts the zip to `https://jigsawapps.com/api/publish`. Claude asks before it runs the command.
+- When you ask Claude to publish, the app's files are sent to Jigsaw. With an upload link, Claude writes the command itself for your machine: it zips the app's folder, leaving out `node_modules` and `.git`, and posts the zip to `https://jigsawapps.com/api/publish` with the ticket. Claude asks before it runs the command.
 - The plugin has no hooks, no local server and no scripts. Nothing runs when you install it.
 
 ## Good to know
