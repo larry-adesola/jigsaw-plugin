@@ -13,8 +13,8 @@ Jigsaw hosts small apps and shares them by email, like a doc. To publish:
 - If you can run shell commands, call get_upload_link. It gives an upload address and a ticket. Zip the app's folder, leaving out node_modules and .git, and POST it to that address with the ticket as a Bearer token, writing the command for the machine you are on. The files go from disk, so you do not retype them. Always prefer this.
 - If you cannot run commands, use publish_app and pass every file.
 
-Build for the LIGHT LANE unless the app truly needs its own server:
-- A light-lane app is static files with an index.html at the top level. No build step, no server code, no login code.
+Build a PAGE APP unless the app truly needs its own server:
+- A page app is static files with an index.html at the top level. No build step, no server code, no login code.
 - Jigsaw signs every visitor in before the page loads. Call GET /_jigsaw/me for { email, role }. Role is "owner", "editor" or "viewer". The visitor can change data when the role is "owner" or "editor".
 - The page may use inline or external scripts and styles; Jigsaw adds no content policy to an app's own files. Refer to Jigsaw's API with paths that start with a slash, as written here.
 - Store data with Jigsaw's data API, on the app's own address, using fetch with no extra headers:
@@ -34,7 +34,7 @@ Build for the LIGHT LANE unless the app truly needs its own server:
     POST /_jigsaw/fetch  body: { "url": "https://api.example.com/v1/...", "method": "POST", "headers": { "Content-Type": "application/json" }, "body": "..." }
   Do not send the key or any placeholder for it. The owner pastes the key into Jigsaw (app settings, Keys) and says which host it is for and how that service expects it (usually the Authorization: Bearer header). Jigsaw adds it and returns the outside response. Calls to a host with no key saved are refused with 403, so tell the owner the exact host to save the key for.
 
-FULL LANE (only when a server is needed): include a package.json with a "start" script.
+SERVER APP (only when a server is needed): include a package.json with a "start" script.
 - The server must listen on process.env.PORT and process.env.HOST.
 - Jigsaw installs the packages (install hooks do not run), runs "npm run build" if there is a "build" script, then "npm start". Do not upload node_modules.
 - Keep files and databases in process.env.JIGSAW_DATA_DIR. It outlives restarts and new versions; the app's own folder does not.
